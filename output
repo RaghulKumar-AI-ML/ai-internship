@@ -1,68 +1,32 @@
-================================================================================
-CODE MODERNIZATION ANALYSIS REPORT
-================================================================================
+Analysis complete. Risk: CRITICAL
 
-🔴 RISK LEVEL: CRITICAL
-   Risk Score: 125/100
+{
+  "risk_level": "critical",
+  "metrics": {
+    "lines_of_code": 5,
+    "cyclomatic_complexity": 2,
+    "class_count": 0,
+    "function_count": 1,
+    "maintainability_index": 92,
+    "technical_debt_score": 30,
+    "python_version": "Python 2 (Legacy)"
+  },
+  "anti_patterns": [
+    {
+      "name": "Dangerous eval usage",
+      "severity": "critical",
+      "description": "eval() can execute arbitrary code",
+      "line_number": 0
+    }
+  ],
+  "code_smells": []
+}
+Code Modernization RAG Assistant
 
-📊 METRICS SUMMARY
---------------------------------------------------------------------------------
-  Lines of Code:          54
-  Code Lines:             40
-  Comment Lines:          4
-  Cyclomatic Complexity:  14
-  Maintainability Index:  53.0/100
-  Technical Debt Score:   93.08/100
-  Python Version:         Python 2 (Legacy - EOL)
-  Classes:                1
-  Functions:              5
-  Avg Function Length:    10.3 lines
-  Max Nesting Depth:      0
-  Dependencies:           2
+Ask: Why is this code risky?
+Answer: The code is risky due to high complexity and unsafe patterns like eval().
 
-⚠️  ANTI-PATTERNS DETECTED
---------------------------------------------------------------------------------
-  🟡 Bare Except Clause (Line 22)
-     Using except without specifying exception type
-  🟠 Mutable Default Arguments (Line 8)
-     Using mutable objects (list/dict) as default arguments
-  🟡 Wildcard Import (Line 4)
-     Wildcard imports pollute namespace
-  🔴 Dangerous EVAL Usage (Line 27)
-     Using eval() can execute arbitrary code
+Ask: How should I modernize this code?
+Answer: Modernization includes removing eval(), migrating to Python 3, and reducing complexity.
 
-👃 CODE SMELLS DETECTED
---------------------------------------------------------------------------------
-  • Deep Nesting - Line 16
-    Code is nested 6 levels deep
-  • Deep Nesting - Line 17
-    Code is nested 7 levels deep
-  • Deep Nesting - Line 18
-    Code is nested 8 levels deep
-  • Deep Nesting - Line 19
-    Code is nested 6 levels deep
-  • Deep Nesting - Line 20
-    Code is nested 7 levels deep
-  • Deep Nesting - Line 43
-    Code is nested 6 levels deep
-  • Deep Nesting - Line 44
-    Code is nested 6 levels deep
-  • Deep Nesting - Line 45
-    Code is nested 7 levels deep
-  • Deep Nesting - Line 46
-    Code is nested 6 levels deep
-
-💡 MODERNIZATION RECOMMENDATIONS
---------------------------------------------------------------------------------
-  1. [🔴 CRITICAL] Migrate to Python 3
-     Python 2 reached end-of-life in January 2020. Security updates are no longer provided.
-  2. [🔴 CRITICAL] Fix: Dangerous EVAL Usage
-     Using eval() can execute arbitrary code (line 27)
-  3. [🟠 HIGH] Fix: Mutable Default Arguments
-     Using mutable objects (list/dict) as default arguments (line 8)
-  4. [🟡 MEDIUM] Add documentation and refactor
-     Code maintainability could be improved with better structure and documentation
-
-================================================================================
-
-📄 Detailed report saved to: analysis_report.json
+Ask: exit
