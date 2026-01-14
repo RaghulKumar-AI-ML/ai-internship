@@ -1,118 +1,81 @@
-🧠 Metric-Based Code Modernization Analyzer
-📌 Overview
+Overview
 
-This project is a metric-based code analysis tool that analyzes Python source code and helps assess its modernization risk.
-It is designed as a validation module to understand how enterprise modernization tools first extract structured signals from legacy code before applying advanced techniques like AST analysis or machine learning.
+This project is a Python-based static code analysis tool designed to support legacy system modernization. It analyzes Python source code to extract structural metrics, detect risky patterns, assess modernization risk, and provide actionable recommendations.
 
-The tool focuses on learning and explainability, not perfection.
+The project is extended with a simple Retrieval-Augmented Generation (RAG) layer that allows interactive, human-readable explanations of analysis results.
 
-🎯 Problem Statement
+The focus of this project is on clarity, explainability, and learning-oriented system design rather than production-scale optimization.
 
-Large Python codebases (such as ERP systems) often contain:
+Motivation
 
-High complexity
+Large enterprise systems often contain long-lived Python codebases with varying levels of complexity, technical debt, and legacy patterns. Before attempting modernization, teams must understand which components are risky and why.
 
-Legacy patterns (Python 2 syntax, globals, eval)
+This project demonstrates how source code can be transformed into structured insights that help prioritize modernization efforts.
 
-Deep nesting
+What the Project Does
+Static Code Analysis
 
-Poor maintainability
+Parses Python source code using the Abstract Syntax Tree (AST)
 
-Before modernizing such systems, teams need to answer:
+Computes structural metrics
 
-Which parts of the code are risky and should be addressed first?
+Detects high-risk anti-patterns
 
-This project provides an automated, rule-based way to answer that question.
+Estimates maintainability and technical debt
 
-🛠️ What This Tool Does
+Assigns an overall modernization risk level
 
-The analyzer:
+Produces a structured JSON report
 
-Reads Python source code
+Retrieval-Augmented Generation (RAG)
 
-Extracts structural metrics
+Uses analysis insights as a knowledge base
 
-Detects anti-patterns and code smells
+Supports interactive question answering over analysis results
 
-Calculates maintainability and technical debt
+Generates explainable, rule-based responses for modernization guidance
 
-Assigns an overall risk level
+Metrics Extracted
 
-Generates modernization recommendations
+Lines of code
 
-📊 Metrics Extracted
+Cyclomatic complexity
 
-The tool calculates:
+Number of classes and functions
 
-Lines of code (total, code, comments, blanks)
+Maintainability index
 
-Cyclomatic complexity (using AST)
+Technical debt score
 
-Maximum nesting depth
+Detected Python version (Python 2 or Python 3)
 
-Number of functions and classes
-
-Imported dependencies
-
-Average function length
-
-Maintainability Index (0–100)
-
-Technical Debt Score (0–100)
-
-Detected Python version (2 vs 3)
-
-⚠️ Issues Detected
+Issues Detected
 Anti-Patterns
 
-Examples:
+Use of eval() or similar unsafe constructs
 
-eval() / exec() usage
-
-Bare except: blocks
-
-Excessive global variables
-
-Wildcard imports (from x import *)
-
-Mutable default arguments
+Legacy Python 2 syntax
 
 Code Smells
 
-Examples:
+High logical complexity
 
-Long functions
+Hard-to-maintain structure
 
-Long lines
+Risk Assessment
 
-Deep nesting
+The tool assigns one of the following risk levels:
 
-Commented-out code
+Low
 
-Too many dependencies
+Medium
 
-⚖️ Risk Assessment
+High
 
-Based on all metrics, the tool assigns a risk level:
+Critical
 
-Risk Level	Meaning
-🟢 Low	Easy to maintain
-🟡 Medium	Some refactoring needed
-🟠 High	Difficult to maintain
-🔴 Critical	Immediate modernization required
+These levels help determine which code should be modernized first.
 
-This mirrors enterprise modernization patterns where teams prioritize high-risk components first.
+RAG Layer
 
-💡 Modernization Recommendations
-
-The tool generates actionable recommendations, such as:
-
-Migrate Python 2 code to Python 3
-
-Reduce cyclomatic complexity
-
-Refactor long or deeply nested functions
-
-Remove dangerous constructs
-
-Improve documentation and structure
+The RAG layer operates on top of the analyzer output. It retrieves relevant insights from stored analysis results and generates natural language explanations and recommendations. This allows users to query the analysis interactively without reading raw metrics.
