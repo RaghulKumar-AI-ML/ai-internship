@@ -1,15 +1,36 @@
+import re
+
 class SimpleRAG:
     def __init__(self, knowledge_file):
-        with open(knowledge_file) as f:
-            self.data = f.read().lower()
+        with open(knowledge_file, "r") as f:
+            self.documents = [
+                line.strip()
+                for line in f.readlines()
+                if line.strip()
+            ]
 
-    def answer(self, query: str):
-        q = query.lower()
+    def retrieve(self, query):
+        query_words = set(query.lower().split())
+        scored_docs = []
 
-        if "risk" in q:
-            return "The code is risky due to high complexity and unsafe patterns like eval()."
+        for doc in self.documents:
+            doc_words = set(doc.lower().split())
+            score = len(query_words & doc_words)
+            scored_docs.append((score, doc))
 
-        if "modernize" in q:
-            return "Modernization includes removing eval(), migrating to Python 3, and reducing complexity."
+        scored_docs.sort(reverse=True)
+        return scored_docs[0][1] if scored_docs else None
 
-        return "Based on analysis, the code needs refactoring for maintainability."
+    def answer(self, query):
+        context = self.retrieve(query)
+
+        if not context:
+            return "No relevant information found."
+
+        if "risk" in query.lower():
+            return f"The code is risky because: {context}"
+
+        if "modernize" in query.lower():
+            return f"Recommended modernization steps: {context}"
+
+        return f"Relevant information: {context}"
