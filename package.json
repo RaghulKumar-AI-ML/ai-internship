@@ -1,0 +1,21 @@
+{
+  "name": "code-modernization-rag",
+  "displayName": "Code Modernization RAG",
+  "description": "Ask questions about Python code modernization",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "activationEvents": [
+    "command:rag.askQuestion"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "rag.askQuestion",
+        "title": "Ask Code Modernization Question"
+      }
+    ]
+  }
+}
