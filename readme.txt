@@ -79,3 +79,15 @@ These levels help determine which code should be modernized first.
 RAG Layer
 
 The RAG layer operates on top of the analyzer output. It retrieves relevant insights from stored analysis results and generates natural language explanations and recommendations. This allows users to query the analysis interactively without reading raw metrics.
+
+
+Code Modernization RAG VS Code Extension
+
+This extension allows users to ask natural language questions about
+Python code modernization and receive answers powered by a RAG system.
+
+Usage:
+- Open Command Palette
+- Run "Ask Code Modernization Question"
+- Enter your question
+
